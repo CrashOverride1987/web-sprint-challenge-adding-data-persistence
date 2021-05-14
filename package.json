@@ -4,7 +4,14 @@
   "description": "Data Persistence Challenge",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand --silent"
+    "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand --silent",
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "reset": "npm run rollback && npm run seed",
+    "cleanup": "knex seed: run --specific=01-cleanup.js",
+    "seed": "knex seed:run"
   },
   "repository": {
     "type": "git",
