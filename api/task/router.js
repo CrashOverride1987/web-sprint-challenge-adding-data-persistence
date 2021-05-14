@@ -9,4 +9,22 @@ taskRouter.use((err, req, res, next) => { //eslint-disable-line
     })
 })
 
+taskRouter.post('/', async (req, res, next) => {
+    try {
+        const newTask = await taskRouter.create(req.body.trim())
+        res.status(201).json(newTask)
+    } catch (err) {
+        next(err)
+    }
+})
+taskRouter.get('/', async (req, res, next) => {
+    try {
+        const tasks = await taskRouter.getAll();
+        res.json(tasks)
+    } catch (err) {
+        next(err)
+    }
+})
+
+
 module.exports = taskRouter
